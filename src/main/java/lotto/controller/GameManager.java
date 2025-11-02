@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.LottoBundle;
 import lotto.domain.LottoMachine;
+import lotto.domain.Money;
 import lotto.util.InputParser;
 import lotto.view.InputView;
 
@@ -15,7 +16,8 @@ public class GameManager {
     }
 
     public void start() {
-        int lottoCount = new InputParser(inputView.inputPurchaseAmount()).parseInt();
-        LottoBundle lottoBundle = lottoMachine.issueLotto(lottoCount);
+        int purchaseAmount = new InputParser(inputView.inputPurchaseAmount()).parseInt();
+        Money money = new Money(purchaseAmount);
+        LottoBundle lottoBundle = lottoMachine.issueLotto(money.lottoPurchaseCount());
     }
 }

@@ -5,6 +5,7 @@ public class Money {
     private final int purchaseAmount;
 
     public Money(int purchaseAmount) {
+        validateIsThousandUnit(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
     }
 
@@ -12,4 +13,5 @@ public class Money {
         return purchaseAmount/LOTTO_PURCHASE;
     }
 
+    private void validateIsThousandUnit(int purchaseAmount) {}
 }

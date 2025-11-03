@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoBundle;
-import lotto.domain.LottoMachine;
-import lotto.domain.Money;
+import lotto.domain.*;
 import lotto.util.InputParser;
 import lotto.view.InputView;
 
@@ -27,5 +24,7 @@ public class GameManager {
         Lotto answerLotto = new Lotto(splittedNumbers);
 
         int bonus = new InputParser(inputView.inputBonusNumber()).parseInt();
+
+        WinningNumber winningNumber = new WinningNumber(answerLotto, bonus);
     }
 }

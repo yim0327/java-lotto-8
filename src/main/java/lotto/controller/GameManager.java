@@ -3,16 +3,19 @@ package lotto.controller;
 import lotto.domain.*;
 import lotto.util.InputParser;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.List;
 import java.util.Map;
 
 public class GameManager {
     private final InputView inputView;
+    private final OutputView outputView;
     private final LottoMachine lottoMachine;
 
-    public GameManager(InputView inputView, LottoMachine lottoMachine) {
+    public GameManager(InputView inputView, OutputView outputView, LottoMachine lottoMachine) {
         this.inputView = inputView;
+        this.outputView = outputView;
         this.lottoMachine = lottoMachine;
     }
 
@@ -21,10 +24,14 @@ public class GameManager {
         Money money = new Money(purchaseAmount);
 
         LottoBundle lottoBundle = createLottoBundle(money);
+        outputView.printBundle(lottoBundle);
+
         WinningNumber winningNumber = createWinningNumber();
 
         Map<Rank, Integer> result = lottoBundle.judgeLotto(winningNumber);
         Profit profit = Profit.of(result, money.getPurchaseAmount());
+
+        printResult(result, profit);
     }
 
     private LottoBundle createLottoBundle(Money money) {
@@ -38,6 +45,11 @@ public class GameManager {
         int bonus = new InputParser(inputView.inputBonusNumber()).parseInt();
 
         return new WinningNumber(answerLotto, bonus);
+    }
+
+    private void printResult(Map<Rank, Integer> result, Profit profit) {
+        outputView.printResult(result);
+        outputView.printProfit(profit.rate());
     }
 
 }

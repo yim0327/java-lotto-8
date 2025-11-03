@@ -5,13 +5,15 @@ import lotto.domain.LottoMachine;
 import lotto.domain.generator.NumbersGenerator;
 import lotto.domain.generator.RandomNumbersGenerator;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
         InputView inputView = new InputView();
+        OutputView outputView = new OutputView();
         NumbersGenerator generator = new RandomNumbersGenerator();
         LottoMachine lottoMachine = new LottoMachine(generator);
-        GameManager gameManager = new GameManager(inputView, lottoMachine);
+        GameManager gameManager = new GameManager(inputView, outputView, lottoMachine);
 
         gameManager.start();
     }

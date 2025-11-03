@@ -32,6 +32,11 @@ public class Lotto {
         return (int) numbers.stream().filter(other::containsNumber).count();
     }
 
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
     private void validateNumberCount(List<Integer> numbers) {
         if (numbers.size() != LottoRules.LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(INVALID_NUMBER_COUNT_ERROR);

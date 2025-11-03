@@ -9,4 +9,8 @@ public class LottoBundle {
         this.lottos = lottos;
     }
 
+    public int getLottoCount() {
+        return lottos.size();
+    }
+
 }

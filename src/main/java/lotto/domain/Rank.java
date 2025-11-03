@@ -18,6 +18,10 @@ public enum Rank {
         this.prize = prize;
     }
 
+    public long getPrize() {
+        return prize;
+    }
+
     public static Rank result(int match, boolean bonus) {
         if (match == 6) return FIRST;
         if (match == 5 && bonus) return SECOND;

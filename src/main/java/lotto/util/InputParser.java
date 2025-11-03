@@ -1,8 +1,8 @@
 package lotto.util;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class InputParser {
     private final String input;
@@ -16,13 +16,10 @@ public class InputParser {
     }
 
     public List<Integer> splitString() {
-        List<Integer> numbers = new ArrayList<>();
-
-        Arrays.stream(input.split(","))
+        return Arrays.stream(input.split(","))
                 .map(String::trim)
-                .forEach(s -> numbers.add(parseInt()));
-
-        return numbers;
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
 }

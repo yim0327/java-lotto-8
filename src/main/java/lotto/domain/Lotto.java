@@ -13,7 +13,7 @@ public class Lotto {
         validateNumberCount(numbers);
         validateDuplicateNumbers(numbers);
         validateNumberBoundary(numbers);
-        this.numbers = numbers;
+        this.numbers = numbers.stream().sorted().toList();
     }
 
     /**

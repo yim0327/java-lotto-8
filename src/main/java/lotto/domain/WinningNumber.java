@@ -13,6 +13,17 @@ public class WinningNumber {
         this.bonusNumber = bonusNumber;
     }
 
+    /**
+     * 당첨 번호 매칭 : 로또 번호와 당첨 번호 비교 매칭 후 결과 반환
+     * - 당첨 번호 + 보너스 번호(상태)를 가지고 있는 WinningNumbers에게 매칭 책임(행동) 부여
+     * - 매칭 시 필요한 정보를 Lotto에 요청
+     */
+    public Rank match(Lotto lotto) {
+        int matchCount = lotto.countMatch(winningNumber);
+        boolean bonusMatch = lotto.containsNumber(bonusNumber);
+        return Rank.result(matchCount, bonusMatch);
+    }
+
     private void validateDuplicateBonusNumber(int number) {
         if (winningNumber.containsNumber(number)) {
             throw new IllegalArgumentException(INVALID_DUPLICATE_BONUS_NUMBER_ERROR);

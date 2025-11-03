@@ -16,8 +16,20 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    /**
+     * 숫자 포함 여부 : 해당 숫자가 리스트에 존재하는지 여부
+     */
     public boolean containsNumber(int number) {
         return numbers.contains(number);
+    }
+
+    /**
+     * 매칭 성공 개수 : 당첨 번호와 로또 번호를 비교하여 매칭 개수 반환
+     * - 각 당첨 번호(other)의 값을 containsNumber의 매개변수로 함
+     * - 당첨 번호와 로또 번호 일치 시 카운트 증가
+     */
+    public int countMatch(Lotto other) {
+        return (int) numbers.stream().filter(other::containsNumber).count();
     }
 
     private void validateNumberCount(List<Integer> numbers) {

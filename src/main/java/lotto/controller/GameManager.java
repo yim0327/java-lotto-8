@@ -1,10 +1,13 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
 import lotto.domain.LottoBundle;
 import lotto.domain.LottoMachine;
 import lotto.domain.Money;
 import lotto.util.InputParser;
 import lotto.view.InputView;
+
+import java.util.List;
 
 public class GameManager {
     private final InputView inputView;
@@ -19,5 +22,10 @@ public class GameManager {
         int purchaseAmount = new InputParser(inputView.inputPurchaseAmount()).parseInt();
         Money money = new Money(purchaseAmount);
         LottoBundle lottoBundle = lottoMachine.issueLotto(money.lottoPurchaseCount());
+
+        List<Integer> splittedNumbers = new InputParser(inputView.inputWinningNumber()).splitString();
+        Lotto answerLotto = new Lotto(splittedNumbers);
+
+        int bonus = new InputParser(inputView.inputBonusNumber()).parseInt();
     }
 }

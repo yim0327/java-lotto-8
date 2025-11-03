@@ -10,6 +10,10 @@ public class Money {
         this.purchaseAmount = purchaseAmount;
     }
 
+    public int getPurchaseAmount() {
+        return purchaseAmount;
+    }
+
     public int lottoPurchaseCount() {
         return purchaseAmount/LOTTO_PURCHASE;
     }

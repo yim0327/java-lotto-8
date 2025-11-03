@@ -20,8 +20,7 @@ public class GameManager {
     }
 
     public void start() {
-        int purchaseAmount = new InputParser(inputView.inputPurchaseAmount()).parseInt();
-        Money money = new Money(purchaseAmount);
+        Money money = readMoney();
 
         LottoBundle lottoBundle = createLottoBundle(money);
         outputView.printBundle(lottoBundle);
@@ -34,17 +33,35 @@ public class GameManager {
         printResult(result, profit);
     }
 
+    private Money readMoney() {
+        while(true) {
+            try{
+                int purchaseAmount = new InputParser(inputView.inputPurchaseAmount()).parseInt();
+                return new Money(purchaseAmount);
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
+
+    }
+
     private LottoBundle createLottoBundle(Money money) {
         return lottoMachine.issueLotto(money.lottoPurchaseCount());
     }
 
     private WinningNumber createWinningNumber() {
-        List<Integer> splittedNumbers = new InputParser(inputView.inputWinningNumber()).splitString();
-        Lotto answerLotto = new Lotto(splittedNumbers);
+        while (true) {
+            try {
+                List<Integer> splittedNumbers = new InputParser(inputView.inputWinningNumber()).splitString();
+                Lotto answerLotto = new Lotto(splittedNumbers);
 
-        int bonus = new InputParser(inputView.inputBonusNumber()).parseInt();
+                int bonus = new InputParser(inputView.inputBonusNumber()).parseInt();
 
-        return new WinningNumber(answerLotto, bonus);
+                return new WinningNumber(answerLotto, bonus);
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
     }
 
     private void printResult(Map<Rank, Integer> result, Profit profit) {

@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
-    private static final String INVALID_NUMBER_COUNT_ERROR = "[ERROR] 로또 번호는 "+LottoRules.LOTTO_NUMBER_COUNT+"개여야 합니다.";
+    private static final String INVALID_NUMBER_COUNT_ERROR = "로또 번호는 "+LottoRules.LOTTO_NUMBER_COUNT+"개여야 합니다.";
     private static final String INVALID_DUPLICATE_NUMBERS_ERROR = "로또 번호는 중복될 수 없습니다.";
     private static final String INVALID_NUMBER_BOUNDARIES_ERROR = "로또 번호는 "+LottoRules.MIN_NUMBER_BOUNDARIES+"부터 "+LottoRules.MAX_NUMBER_BOUNDARIES+" 사이의 숫자여야 합니다.";
     private final List<Integer> numbers;
